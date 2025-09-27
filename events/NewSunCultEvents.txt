@@ -1608,8 +1608,14 @@ country_event = {
 	option = {
 		name = new_sun_cult.74.a
 		ai_chance = {
-				factor = 67
-				modifier = { factor = 0.25 tag = F25 }
+				if = { 
+					limit = { FROM = {ai = no} }
+					factor = 100
+				} 
+				else = {
+					factor = 67
+					modifier = { factor = 0.25 tag = F25 }
+				}
 			}
 		FROM = {
 			set_country_flag = nsc_accepted_demands
@@ -1620,10 +1626,16 @@ country_event = {
 	#Lol no
 	option = {
 		name = new_sun_cult.74.b
-		ai_chance = { factor = 33 }
-		FROM = {
-			set_country_flag = nsc_lol_no
-			country_event = { id = new_sun_cult.75 days = 1 }
+ 		if = {
+ 			limit = { FROM = {ai = no} }
+ 			factor = 0
+ 		}
+ 		else = {
+			ai_chance = { factor = 33 }
+			FROM = {
+				set_country_flag = nsc_lol_no
+				country_event = { id = new_sun_cult.75 days = 1 }
+			}
 		}
 	}
 }
